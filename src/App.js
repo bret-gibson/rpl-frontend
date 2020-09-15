@@ -3,7 +3,7 @@ import "semantic-ui-css/semantic.min.css";
 import logo from "./logo.svg";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/Login.js";
 
 class App extends Component {
   constructor() {
@@ -26,9 +26,19 @@ class App extends Component {
       });
   };
 
+  handleLogout = (event) => {
+    this.setState({ userData: null });
+  };
+
   render() {
     return (
       <div className="App">
+        {this.state.userData && (
+          <NavBar
+            userData={this.state.userData}
+            handleLogout={this.handleLogout}
+          />
+        )}
         <Route
           exact
           path="/"
